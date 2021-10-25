@@ -1,33 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { Bar } from 'react-chartjs-2'
 import { format } from 'date-fns'
 
 export const BarChart = ({data}) => {
-    const [positiveNumbers, setPositiveNumbers] = useState([])
     const allDates =  data?.map(statment => statment.createdAt)
     const allDays = allDates?.map(date => format(new Date(date), 'dd'))
 
     const getValues = (dates, data) => {
-        let newArrayPositive = []
-        let newArrayNegative = []
+        let positive = 0
+        let negative = 0
 
         for(let i = 0; i < dates?.length; i++) {
             const found = data.find(item => item.createdAt === dates[i])
             if(found.amount >= 0){
-                newArrayPositive.push(found.amount)
+                positive = positive + found.amount
             } else {
-                newArrayNegative.push(found.amount) 
+                negative = negative + found.amount
             }
         }
-        console.log({newArrayPositive, newArrayNegative})
-        // const total = newArrayPositive.reduce((total, numero) => total + numero, 0)
-        // return total / 100
+        return {positive, negative}
     }
-
-
-
     console.log(getValues(allDates, data))
-
 
     return (
     <div>
@@ -36,7 +29,7 @@ export const BarChart = ({data}) => {
             labels: [...new Set(allDays)],
             datasets: [{
                 label: 'saídas',
-                data: [12, 19, -3, 5, 2, 3],
+                data: [-10, -19, -3, -50, -20, -34, -100, -40, -100, -54, -66],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                 ],
@@ -47,7 +40,7 @@ export const BarChart = ({data}) => {
             },
             {
                 label: 'entradas',
-                data: [12, 19, -3, 5, 2, 3],
+                data: [12, 19, -32, 51, 2, 31, 150, 90, 1, 92, 40, 89],
                 backgroundColor: [
                     'rgba(54, 162, 235, 0.2)',
                 ],
