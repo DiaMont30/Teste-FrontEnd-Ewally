@@ -2,11 +2,12 @@ import { TableRow, Button } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
-import { Card, Balance, Elements, Table, StyledTextField, StyledTableCell, ButtonBox, LogoutButton, SearchBox } from './styles'
+import { Card, Balance, Elements, Table, StyledTextField, StyledTableCell, ButtonBox, LogoutButton, SearchBox, Grafic } from './styles'
 import { useProtectedPage } from '../../hooks/index'
 import { useRequestData } from '../../hooks/useRequestData'
 import { format } from 'date-fns'
 import { logout } from '../../router/coordinator'
+import { BarChart } from '../../components/BarChart'
 
 const AccountPage = () => {
   //Hooks
@@ -35,7 +36,7 @@ const AccountPage = () => {
 
   //Date Formatter
   const dateFormatter = (date) => {
-    return format(new Date(date), ' dd/mm/yyyy')
+    return format(new Date(date), ' dd/MM/yyyy')
   }
 
 
@@ -65,7 +66,10 @@ const AccountPage = () => {
           </ButtonBox>
         </SearchBox>
       </Elements>
-      <Table>
+'     <Grafic>
+         <BarChart/>
+      </Grafic>
+'      <Table>
         {statement?.map((row) => (
           <TableRow
             key={row.id}
