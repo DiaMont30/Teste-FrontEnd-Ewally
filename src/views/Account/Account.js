@@ -8,6 +8,7 @@ import { useRequestData } from '../../hooks/useRequestData'
 import { format } from 'date-fns'
 import { logout } from '../../router/coordinator'
 import { BarChart } from '../../components/BarChart'
+import { NotFound } from '../../components/NotFound/NotFound'
 
 const AccountPage = () => {
   //Hooks
@@ -33,7 +34,7 @@ const AccountPage = () => {
   //Queries
   const [{ balance }] = useRequestData('/account/balance', true)
   const [{ statement }] = useRequestData(`/account/statements${query}`)
-
+  console.log(statement)
   //Date Formatter
   const dateFormatter = (date) => {
     return format(new Date(date), ' dd/MM/yyyy')
@@ -65,22 +66,28 @@ const AccountPage = () => {
           </ButtonBox>
         </SearchBox>
       </Elements>
-'     <Grafic>
-         <BarChart statements={statement}/>
-      </Grafic>
-'      <Table>
-        {statement?.map((row) => (
+      {statement?.length ?  
+        <>
+        <Grafic>
+            <BarChart statements={statement} />
+        </Grafic>
+        <Table>
+          {statement?.map((row) => (
           <TableRow
             key={row.id}
           >
-            <StyledTableCell >
+            <StyledTableCell>
               {dateFormatter(row.createdAt)}
             </StyledTableCell>
             <StyledTableCell align="right">{row.operationType}</StyledTableCell>
             <StyledTableCell align="right">{`R$ ${row.amount / 100}`}</StyledTableCell>
           </TableRow>
-        ))}
-      </Table>
+          ))}
+        </Table>
+        </>
+        :
+        <NotFound/>
+      }
     </Card>
   );
 }
