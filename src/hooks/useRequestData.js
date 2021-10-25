@@ -3,7 +3,7 @@ import axios from 'axios'
 import {BASE_URL} from '../constants/url'
 import { useHistory } from 'react-router-dom'
 
-export const useRequestData = (urlEnd) => {
+export const useRequestData = (urlEnd, isExpired) => {
     const history = useHistory();
     const authToken = localStorage.getItem("token")
 
@@ -17,7 +17,7 @@ export const useRequestData = (urlEnd) => {
         }).then(response => {
             setData(response.data);
         }).catch(err => {
-            if (err.response.status === 401) {
+            if (isExpired && err.response.status === 401) {
                 history.push("/")
                 localStorage.removeItem("token");
                 window.alert(err.response.data.msg)

@@ -31,14 +31,13 @@ const AccountPage = () => {
   }
 
   //Queries
-  const [{ balance }] = useRequestData('/account/balance')
+  const [{ balance }] = useRequestData('/account/balance', true)
   const [{ statement }] = useRequestData(`/account/statements${query}`)
 
   //Date Formatter
   const dateFormatter = (date) => {
     return format(new Date(date), ' dd/MM/yyyy')
   }
-
 
   return (
     <Card>
@@ -67,7 +66,7 @@ const AccountPage = () => {
         </SearchBox>
       </Elements>
 '     <Grafic>
-         <BarChart/>
+         <BarChart data={statement}/>
       </Grafic>
 '      <Table>
         {statement?.map((row) => (
