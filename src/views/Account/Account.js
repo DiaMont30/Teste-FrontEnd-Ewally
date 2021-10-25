@@ -44,7 +44,7 @@ const AccountPage = () => {
       <Balance>
         <h3>Saldo:</h3>
         <span>{`R$: ${balance / 100}`}</span>
-        <LogoutButton variant="contained" color='primary' onClick={() => logout(history)} >Logout</LogoutButton>
+        <LogoutButton variant="contained" color='primary' onClick={() => logout(history)}>Logout</LogoutButton>
       </Balance>
       <Elements>
         <h3>Extrato:</h3>
@@ -66,7 +66,7 @@ const AccountPage = () => {
         </SearchBox>
       </Elements>
 '     <Grafic>
-         <BarChart data={statement}/>
+         <BarChart statements={statement}/>
       </Grafic>
 '      <Table>
         {statement?.map((row) => (
