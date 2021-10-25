@@ -1,9 +1,5 @@
 # Front-End Test for Ewally
 - Project executed to evaluation for the Front-end position at Ewally.
-
-### Link do Surge:
-https://future-eats4-dumont.surge.sh/
-
 ### What works:
 - obrigatory routes
 - login / logout
