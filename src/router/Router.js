@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import LoginPage from '../views/Login/LoginPage';
-
-function Router() {
+import AccountPage from '../views/Account/Account';
+const Router = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path="/login">
-                    <LoginPage/>                
+                <Route exact path="/">
+                    <LoginPage />
                 </Route>
-                {/* <Route exact path="/cadastrar">
-                </Route> */}
-                
+                <Route exact path="/account">
+                    <AccountPage />
+                </Route>
             </Switch>
         </BrowserRouter>
     );

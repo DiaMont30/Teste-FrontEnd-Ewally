@@ -5,7 +5,7 @@ import { LoginContainer, FormContainer } from "./styles"
 import { login } from '../../services/login'
 import { useHistory } from 'react-router-dom'
 
-function LoginPage() {
+const LoginPage = () => {
   const { form, onChange, reset } = useForm({ username: "", password: "" })
   const history = useHistory()
 

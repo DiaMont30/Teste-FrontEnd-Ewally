@@ -1,21 +1,20 @@
 import styled from 'styled-components'
 
-
 export const LoginContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 85vw;
-    max-width: 465px;
-    margin: 0 auto;
-    justify-content: center;
-    padding: 1em;
+    max-width: 25em;
+    margin: 10em auto;
+    text-align: center;
+    @media (max-width: 400px) {
+        max-width: 21em;
+  }
 `
+
 
 export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     height: 28vh;
     justify-content: space-around;
-    margin-bottom: 15px;
-    gap: 16px;
+    margin-bottom: 1em;
+    gap: 1em;
 `
